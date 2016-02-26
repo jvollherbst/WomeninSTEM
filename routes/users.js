@@ -1,13 +1,12 @@
-var express = require('express');
-var users = express.Router();
+var express    = require('express');
+var users      = express.Router();
 var bodyParser = require('body-parser');
-var db = require('./../db/pg');
-
+var db         = require('./../db/pg');
 
 
 users.route('/')
   .post(db.createUser, (req, res) => {
-    res.redirect('/success');
+    res.redirect('users/success');
   })
 
 users.route('/success')

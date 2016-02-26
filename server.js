@@ -18,6 +18,7 @@ app.use(logger('dev'));
 dotenv.load();
 
 var userRoutes = require( path.join(__dirname, '/routes/users'));
+var postRoutes = require( path.join(__dirname, '/routes/posts'));
 
 // override with POST having ?_method=XXXX
 /* e.g. If we need to make a PUT,
@@ -41,14 +42,12 @@ app.use(session({
 }))
 
 app.get('/', (req, res) => {
-  res.send('homepage test');
+  res.render('pages/home.ejs', {user: req.session.user});
 });
 
 
-// app.use('/', require(path.join(__dirname, '/routes/')));
-
 app.use('/users', userRoutes)
-
+app.use('/posts', postRoutes)
 
 var port = process.env.PORT || 3000; //allows user to select their own port, does not fix a port
 var server = app.listen(port);
