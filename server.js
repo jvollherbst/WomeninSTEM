@@ -1,12 +1,12 @@
 'use strict'
-var path           = require('path');
-var express        = require('express');
-var logger         = require('morgan');
-var methodOverride = require('method-override');
-var bodyParser     = require('body-parser');
-var db             = require('./db/pg');
-var dotenv         = require ('dotenv');
-var app            = express();
+var path            = require('path');
+var express         = require('express');
+var logger          = require('morgan');
+var methodOverride  = require('method-override');
+var bodyParser      = require('body-parser');
+var db              = require('./db/pg');
+var dotenv          = require ('dotenv');
+var app             = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
