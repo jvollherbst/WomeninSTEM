@@ -1,8 +1,8 @@
-var pg = require('pg');
+var pg               = require('pg');
 var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
-var bcrypt = require('bcrypt');
-var salt = bcrypt.genSaltSync(10);
-var session = require('express-session');
+var bcrypt           = require('bcrypt');
+var salt             = bcrypt.genSaltSync(10);
+var session          = require('express-session');
 
 
 function loginUser(req, res, next) {
@@ -45,7 +45,6 @@ function createSecure(email, password, callback) {
   })
 }
 
-
 function createUser(req, res, next) {
   createSecure(req.body.email, req.body.password, saveUser);
 
@@ -68,5 +67,49 @@ function createUser(req, res, next) {
   }
 }
 
+function showPosts(req, res, next){
+  pg.connect(connectionString, function(err, client, done) {
+    if(err) {
+      done()
+      console.log(err)
+      return res.status(500).json({success: false, data: err})
+    }
+    var query = client.query('SELECT * FROM posts', function(err, result) {
+      done()
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.rows = result.rows;
+      next()
+    });
+  });
+  console.log('test');
+}
+
+function addPosts(req, res, next) {
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, function(err, client, done) {
+    // Handle connection errors
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+    //console.log(req.body);
+    var query = client.query("INSERT INTO posts (name, occupation, years, country, bio, img) VALUES($1, $2, $3, $4, $5, $6)",
+    [req.body.name, req.body.occupation, req.body.years, req.body.country, req.body.bio, req.body.img],
+    function(err, result) {
+      done()
+      if(err) {
+        return console.error('error, running query', err);
+      }
+      next()
+    });
+  });
+}
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+
+module.exports.showPosts = showPosts;
+module.exports.showPosts = addPosts;

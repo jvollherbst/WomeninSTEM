@@ -17,14 +17,13 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 dotenv.load();
 
-var userRoutes = require( path.join(__dirname, '/routes/users'));
-var postRoutes = require( path.join(__dirname, '/routes/posts'));
+var userRoutes = require(path.join(__dirname, '/routes/users'));
+var postRoutes = require(path.join(__dirname, '/routes/posts'));
 
 // override with POST having ?_method=XXXX
 /* e.g. If we need to make a PUT,
 we'll POST to a url appended with ?_method=put */
 app.use(methodOverride('_method'))
-
 app.use(express.static(path.join(__dirname, './public/')));
 
 app.set('views', './views')

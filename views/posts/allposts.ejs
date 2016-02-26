@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sign up!</title>
+</head>
+<body>
+  <h1>All the Post</h1>
+  <% movies.forEach(function(el) { %>
+      <div>
+        <ul>
+          <li><img src="<%= el.poster %>" /></li>
+          <li><a href="/posts/<%= el.id %>">Title: <%= el.title %></a></li>
+          <li><%= el.year %></li>
+          <li><%= el.rated %></li>
+          <li><%= el.director %></li>
+          <li><%= el.actors %></li>
+        </ul>
+      </div>
+    <% }) %>
+</body>
+</html>
