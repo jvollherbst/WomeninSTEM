@@ -5,15 +5,13 @@ DROP TABLE IF EXISTS posts;
 CREATE TABLE editors (
        editors_id SERIAL UNIQUE PRIMARY KEY,
        email VARCHAR(255),
-       password_digest TEXT,
-       auth boolean
+       password_digest TEXT
 );
 
 CREATE TABLE subscribers (
        subscribers_id SERIAL UNIQUE PRIMARY KEY,
        email VARCHAR(255),
-       password_digest TEXT,
-       auth boolean
+       password_digest TEXT
 );
 
 CREATE TABLE posts (
