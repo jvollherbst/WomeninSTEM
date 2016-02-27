@@ -12,3 +12,10 @@ nav, li{
   float: left;
   padding-left: 1em;
 }
+
+.container{
+  margin: 0 auto;
+  width: 60em;
+  clear: both;
+  padding-top: 2em;
+}

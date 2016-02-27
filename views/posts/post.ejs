@@ -9,15 +9,15 @@
     <h1>Individual Posts go Here</h1>
     <% posts.forEach(function(el) { %>
         <div>
-          <ul>
-            <li><%= el.name %></li>
-            <li><%= el.occupation %></li>
-            <li><%= el.years %></li>
-            <li><%= el.country %></li>
-            <li><%= el.bio %></li>
-            <li><%= el.img %></li>
-          </ul>
+            <p><img src="<%= el.img %>"</p>
+            <p><%= el.name %></p>
+            <p><%= el.occupation %></p>
+            <p><%= el.years %></p>
+            <p><%= el.country %></p>
+            <p><%= el.bio %></p>
         </div>
       <% }) %>
+
+    <%- include ../partials/footer %>  
   </body>
 </html>

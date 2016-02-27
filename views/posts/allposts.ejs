@@ -9,11 +9,11 @@
   <h1>All the Post</h1>
   <% posts.forEach(function(el) { %>
       <div>
-        <ul>
-          <li><%= el.name %></li>
-          <li><%= el.occupation %></li>
-        </ul>
+          <p><a href="/posts/<%= el.posts_id %>"><%= el.name %></a><br />
+          <%= el.occupation %></p>
       </div>
     <% }) %>
+
+    <%- include ../partials/footer %>
 </body>
 </html>

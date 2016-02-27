@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var db         = require('./../db/pg');
 
+
 function editorAuth(req, res, next) {
   console.log(req.session)
   if (req.session.user) {
@@ -43,11 +44,14 @@ posts.route('/create')//should render the form for creating new posts
 
 //posts by id
 posts.route('/:posts_id')
-  .get(db.showPosts, db.getPostsId, (req, res) => {
+  .get(db.getPostsId, (req, res) => {
     res.render('posts/post.ejs', {posts: res.rows});
-    // res.send({posts: res.rows[0]})
   })
-  
+
+posts.route('/:posts_id/edit')
+  .get(db.getPostsId, (req, res) => {
+    res.render('posts/edit.ejs', {posts: res.rows});
+  })
 
 //edit post by authorization
 // posts.route('/:id/edit')

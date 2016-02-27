@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <%- include ../partials/header %>
-</head>
-<body>
-  <%- include ../partials/nav %>
+<html>
+  <head>
+    <%- include ../partials/header %>
+  </head>
+  <body>
+    <%- include ../partials/nav %>
 
-  <h1>Welcome editor Yay!</h1>
-  <div>
-    <a href="/users/new">Signup</a>
-  </div>
-  <div>
-    <a href="/users/login">Login!</a>
-  </div>
-  <div>
-    <form method="post" action="users/logout?_method=DELETE">
-      <button>logout</button>
-    </form>
-  </div>
-  <div>
-    <a href="/images">images</a>
-  </div>
+    <h1>Edit Posts go Here</h1>
+    <% posts.forEach(function(el) { %>
+        <div>
+            <p><img src="<%= el.img %>"</p>
+            <p><%= el.name %></p>
+            <p><%= el.occupation %></p>
+            <p><%= el.years %></p>
+            <p><%= el.country %></p>
+            <p><%= el.bio %></p>
+        </div>
+      <% }) %>
 
-  <% if (user) {%>
-    <h3>Welcome <%= user.email %></h3>
-  <% } %>
-</body>
+    <%- include ../partials/footer %>
+  </body>
 </html>

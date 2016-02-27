@@ -128,28 +128,6 @@ function addPosts(req, res, next) {
   });
 }
 
-//test function. once working, use commented out code above
-// function addPosts(req, res, next) {
-//   // Get a Postgres client from the connection pool
-//   pg.connect(connectionString, function(err, client, done) {
-//     // Handle connection errors
-//     if(err) {
-//       done();
-//       console.log(err);
-//       return res.status(500).json({ success: false, data: err});
-//     }
-//     //console.log(req.body);
-//     var query = client.query("INSERT INTO test (name, occupation) VALUES($1, $2)",
-//     [req.body.name, req.body.occupation],
-//     function(err, result) {
-//       done()
-//       if(err) {
-//         return console.error('error, running query', err);
-//       }
-//       next()
-//     });
-//   });
-// }
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
