@@ -1,6 +1,13 @@
 <nav>
   <ul>
-    <li><a href="/">HOME</a></li>
-    <li><a href="/">ALL POSTS</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/create">All Posts</a></li>
+    <li><a href="/users/new">Signup</a></li>
+    <li><a href="/users/login">Login!</a></li>
+    <li>
+      <form method="post" action="users/logout?_method=DELETE">
+        <button>logout</button>
+      </form>
+    </li>
   </ul>
 </nav>

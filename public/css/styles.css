@@ -2,6 +2,13 @@ body{
   font-family: 'Merriweather', serif;
 }
 
-h1{
+h1, h2, h3, h4, h5, h6{
   font-family: 'Lato', sans-serif;
+}
+
+
+nav, li{
+  list-style-type: none;
+  float: left;
+  padding-left: 1em;
 }
