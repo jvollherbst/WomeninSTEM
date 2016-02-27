@@ -38,7 +38,7 @@ posts.route('/all')//should render all posts in my db
 })
 
 posts.route('/create')//should render the form for creating new posts
-  .get((req, res) => {
+  .get(editorAuth, (req, res) => {
     res.render('posts/new.ejs');
   })
 
