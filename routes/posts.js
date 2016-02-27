@@ -47,10 +47,13 @@ posts.route('/:posts_id')
   .get(db.getPostsId, (req, res) => {
     res.render('posts/post.ejs', {posts: res.rows});
   })
+  .delete(db.deletePosts, (req, res) => {
+    res.redirect("./all");
+  })
 
 posts.route('/:posts_id/edit')
   .get(db.getPostsId, (req, res) => {
-    res.render('posts/edit.ejs', {posts: res.rows});
+    res.render('posts/editpost.ejs', {posts: res.rows});
   })
 
 //edit post by authorization

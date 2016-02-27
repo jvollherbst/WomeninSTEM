@@ -128,6 +128,48 @@ function addPosts(req, res, next) {
   });
 }
 
+function editPosts(req, res, next) {
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, function(err, client, done) {
+    // Handle connection errors
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+    //console.log(req.body);
+    var query = client.query('DELETE FROM posts WHERE posts_id = $1', [req.params.posts_id],
+    function(err, result) {
+      done()
+      if(err) {
+        return console.error('error, running query', err);
+      }
+      next()
+    });
+  });
+}
+
+function deletePosts(req, res, next) {
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, function(err, client, done) {
+    // Handle connection errors
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+    //console.log(req.body);
+    var query = client.query('DELETE FROM posts WHERE posts_id = $1', [req.params.posts_id],
+    function(err, result) {
+      done()
+      if(err) {
+        return console.error('error, running query', err);
+      }
+      next()
+    });
+  });
+}
+
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
@@ -136,3 +178,5 @@ module.exports.getPostsId = getPostsId;
 
 module.exports.showPosts = showPosts;
 module.exports.addPosts = addPosts;
+module.exports.editPosts = editPosts;
+module.exports.deletePosts = deletePosts;

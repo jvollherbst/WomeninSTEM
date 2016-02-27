@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <%- include ../partials/header %>
-  </head>
-  <body>
-    <%- include ../partials/nav %>
+<html lang="en">
+<head>
+  <%- include ../partials/header %>
+</head>
+<body>
+  <%- include ../partials/nav %>
+
 
     <h1>Edit Posts go Here</h1>
     <% posts.forEach(function(el) { %>
@@ -16,7 +17,11 @@
             <p><%= el.country %></p>
             <p><%= el.bio %></p>
         </div>
+        <form method="post" action="/posts/<%= el.posts_id %>?_method=DELETE">
+          <button>Delete Post</button>
+        </form>
       <% }) %>
+
 
     <%- include ../partials/footer %>
   </body>
