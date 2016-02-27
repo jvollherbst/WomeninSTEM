@@ -49,8 +49,18 @@ posts.route('/create')//should render the form for creating new posts
 
 //posts by id
 posts.route('/:posts_id')
+
+  // .get(db.getPostsId, (req, res) => {
+  //   res.render('posts/post', {posts: res.rows});
+  // })
+
   .get(db.getPostsId, (req, res) => {
-    res.render('posts/post.ejs', {posts: res.rows});
+      if (req.session.user){
+        res.render('posts/edit.ejs', {posts: res.rows});
+      }
+      else{
+        res.render('posts/post.ejs', {posts: res.rows});
+      }
   })
 
   .put(db.editPosts, (req, res) => {
@@ -62,7 +72,7 @@ posts.route('/:posts_id')
   })
 
 posts.route('/:posts_id/edit')
-  .get((req, res) => {
+  .get(editorAuth, (req, res) => {
     res.render('posts/new.ejs', {
       editForm:{
         title: 'Edit a Post',

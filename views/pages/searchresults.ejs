@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ../partials/header %>
+</head>
+<body>
+  <%- include ../partials/nav %>
+
+  <h1>All the Results</h1>
+  <% posts.forEach(function(el) { %>
+      <div>
+          <p><a href="/posts/<%= el.posts_id %>"><%= el.name %></a></p>
+      </div>
+    <% }) %>
+
+    <%- include ../partials/footer %>
+</body>
+</html>
