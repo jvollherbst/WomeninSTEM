@@ -39,12 +39,7 @@ posts.route('/all')//should render all posts in my db
 
 posts.route('/create')//should render the form for creating new posts
   .get((req, res) => {
-    res.render('posts/new.ejs', {
-      editForm:{
-        title: 'Create a Post',
-        postURL: '/posts',
-      }
-    });
+    res.render('posts/new.ejs');
   })
 
 //posts by id
@@ -72,25 +67,21 @@ posts.route('/:posts_id')
   })
 
 posts.route('/:posts_id/edit')
-  .get(editorAuth, (req, res) => {
-    res.render('posts/new.ejs', {
-      editForm:{
-        title: 'Edit a Post',
-        postURL: '/posts/' + req.params.posts_id + '?_method=PUT',
-      }
-    });
+  .get(editorAuth, db.getPostsId, (req, res) => {
+    res.render('posts/editpost.ejs', {posts: res.rows});
   })
 
-// posts.route('/:posts_id/edit')
-//   .get(db.getPostsId, (req, res) => {
-//     res.render('posts/edit', {posts: res.rows});
-//   })
+  // posts.route('/:posts_id/edit')
+  //   .get(editorAuth, db.getPostsId, (req, res) => {
+  //     res.render('posts/new.ejs', {
+  //       posts: res.rows,
+  //       editForm:{
+  //         title: 'Edit a Post',
+  //         postURL: '/posts/' + req.params.posts_id + '?_method=PUT',
+  //       }
+  //     });
+  //   })
 
-//edit post by authorization
-// posts.route('/:id/edit')
-//   .get(editorAuth, (req, res) => {
-//     res.render('posts/edit.ejs', {user: req.session.user});
-//   })
 
 
 module.exports = posts;

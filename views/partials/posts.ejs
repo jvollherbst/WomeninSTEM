@@ -1,0 +1,6 @@
+  <% posts.forEach(function(el) { %>
+      <div class="thumbnail">
+          <p><img src="<%= el.img %>" class="thumb-img" /><br />
+          <a href="/posts/<%= el.posts_id %>"><%= el.name %></a></p>
+      </div>
+    <% }) %>

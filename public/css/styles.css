@@ -24,10 +24,14 @@ nav, li{
   clear: both;
 }
 
-img.post-img{
-  width: 100%;
+.thumbnail img{
+  float: left;
+  width: 15em;
+  height: 15em;
+  object-fit: cover;
+  padding-right: 2em;
 }
 
-img.thumb-img{
+img.post-img{
   width: 100%;
 }

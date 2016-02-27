@@ -6,26 +6,27 @@
 <body>
   <%- include ../partials/nav %>
 
-<h1>Create a Post</h1>
-<form action="/posts" method="post">
+<h1>Edit a Post</h1>
+<% posts.forEach(function(el) { %>
+<form action="/posts/<%= el.posts_id %>?_method=PUT" method="post">
   <div>
     <label for="name">name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" value="<%= el.name %>">
   </div>
 
   <div>
     <label for="occupation">occupation</label>
-    <input type="text" name="occupation">
+    <input type="text" name="occupation" value="<%= el.occupation %>">
   </div>
 
   <div>
     <label for="years">years</label>
-    <input type="text" name="years">
+    <input type="text" name="years" value="<%= el.years %>">
   </div>
 
   <div>
     <label for="country">country</label>
-    <input type="text" name="country">
+    <input type="text" name="country" value="<%= el.country %>">
   </div>
 
   <div>
@@ -35,11 +36,11 @@
 
   <div>
     <label for="img">img</label>
-    <input type="text" name="img">
+    <input type="text" name="img" value="<%= el.img %>">
   </div>
   <input type="submit" value="Submit">
 </form>
-
+<% }) %>
 <%- include ../partials/footer %>
 </body>
 </html>

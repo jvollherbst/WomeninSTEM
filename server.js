@@ -4,10 +4,10 @@ var logger            = require('morgan');
 var methodOverride    = require('method-override');
 var bodyParser        = require('body-parser');
 var db                = require('./db/pg');
-var session           = require('express-session');
-var pgSession         = require('connect-pg-simple')(session);
 var pg                = require('pg');
 var connectionString  = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
+var session           = require('express-session');
+var pgSession         = require('connect-pg-simple')(session);
 var dotenv            = require ('dotenv');
 var path              = require('path');
 var app               = express();
@@ -41,9 +41,14 @@ app.use(session({
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }))
 
-app.get('/', (req, res) => {
-  res.render('pages/home.ejs', {user: req.session.user});
+app.route('/')
+.get(db.showPosts, (req, res) => {
+  res.render('pages/home.ejs', {
+    user: req.session.user,
+    posts: res.rows
+  });
 });
+
 
 
 app.use('/users', userRoutes)
