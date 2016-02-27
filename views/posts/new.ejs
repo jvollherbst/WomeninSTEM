@@ -6,8 +6,8 @@
 <body>
   <%- include ../partials/nav %>
 
-<h1>Create a New Post</h1>
-<form action="/posts" method="post">
+<h1><%= editForm.title %></h1>
+<form action="<%= editForm.postURL %>" method="post">
   <div>
     <label for="name">name</label>
     <input type="text" name="name">

@@ -39,22 +39,42 @@ posts.route('/all')//should render all posts in my db
 
 posts.route('/create')//should render the form for creating new posts
   .get((req, res) => {
-    res.render('posts/new.ejs');
-})
+    res.render('posts/new.ejs', {
+      editForm:{
+        title: 'Create a Post',
+        postURL: '/posts',
+      }
+    });
+  })
 
 //posts by id
 posts.route('/:posts_id')
   .get(db.getPostsId, (req, res) => {
     res.render('posts/post.ejs', {posts: res.rows});
   })
+
+  .put(db.editPosts, (req, res) => {
+    res.status(303).redirect('/posts/' + req.params.posts_id);
+  })
+
   .delete(db.deletePosts, (req, res) => {
     res.redirect("./all");
   })
 
 posts.route('/:posts_id/edit')
-  .get(db.getPostsId, (req, res) => {
-    res.render('posts/editpost.ejs', {posts: res.rows});
+  .get((req, res) => {
+    res.render('posts/new.ejs', {
+      editForm:{
+        title: 'Edit a Post',
+        postURL: '/posts/' + req.params.posts_id + '?_method=PUT',
+      }
+    });
   })
+
+// posts.route('/:posts_id/edit')
+//   .get(db.getPostsId, (req, res) => {
+//     res.render('posts/edit', {posts: res.rows});
+//   })
 
 //edit post by authorization
 // posts.route('/:id/edit')

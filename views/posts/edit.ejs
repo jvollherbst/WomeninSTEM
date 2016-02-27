@@ -17,9 +17,17 @@
             <p><%= el.country %></p>
             <p><%= el.bio %></p>
         </div>
+        <div>
+        <a href="/posts/<%= el.posts_id %>/edit">
+          <button>Edit Post</button>
+        </a>
+        </div>
+
+        <div>
         <form method="post" action="/posts/<%= el.posts_id %>?_method=DELETE">
           <button>Delete Post</button>
         </form>
+        </div>
       <% }) %>
 
 

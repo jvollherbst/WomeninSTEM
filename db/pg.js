@@ -128,6 +128,7 @@ function addPosts(req, res, next) {
   });
 }
 
+
 function editPosts(req, res, next) {
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, function(err, client, done) {
@@ -138,7 +139,8 @@ function editPosts(req, res, next) {
       return res.status(500).json({ success: false, data: err});
     }
     //console.log(req.body);
-    var query = client.query('DELETE FROM posts WHERE posts_id = $1', [req.params.posts_id],
+    var query = client.query('UPDATE posts SET name = $1, occupation = $2, years = $3, country = $4, bio = $5, img = $6 WHERE posts_id = $7',
+    [req.body.name, req.body.occupation, req.body.years, req.body.country, req.body.bio, req.body.img, req.params.posts_id],
     function(err, result) {
       done()
       if(err) {
