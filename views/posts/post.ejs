@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Individual Posts go Here</h1>
+    <% posts.forEach(function(el) { %>
+        <div>
+          <ul>
+            <li><%= el.name %></li>
+            <li><%= el.occupation %></li>
+            <li><%= el.years %></li>
+            <li><%= el.country %></li>
+            <li><%= el.bio %></li>
+            <li><%= el.img %></li>
+          </ul>
+        </div>
+      <% }) %>
+  </body>
+</html>

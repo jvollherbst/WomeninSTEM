@@ -30,3 +30,9 @@ CREATE TABLE editors_join (
   posts_id integer REFERENCES posts,
   PRIMARY KEY (editors_id, posts_id)
 );
+
+CREATE TABLE test (
+       test_id SERIAL UNIQUE PRIMARY KEY,
+       name VARCHAR(255),
+       occupation TEXT
+);
