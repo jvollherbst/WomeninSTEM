@@ -6,19 +6,17 @@
   <body>
     <%- include ../partials/nav %>
 
+    <div class="content">
     <h1>Individual Posts go Here</h1>
     <% posts.forEach(function(el) { %>
-        <div>
             <p><img src="<%= el.img %>" class="post-img" /></p>
             <p><%= el.name %></p>
             <p><%= el.occupation %></p>
             <p><%= el.years %></p>
             <p><%= el.country %></p>
             <p><%= el.bio %></p>
-        </div>
-
-        <div>
       <% }) %>
+      <div>
 
     <%- include ../partials/footer %>
   </body>

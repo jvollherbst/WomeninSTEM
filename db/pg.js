@@ -6,30 +6,30 @@ var session          = require('express-session');
 
 
 function loginUser(req, res, next) {
-    var email = req.body.email;
-    var password = req.body.password;
+  var email = req.body.email;
+  var password = req.body.password;
 
-    pg.connect(connectionString, function(err, client, done) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done()
+      console.log(err)
+      return res.status(500).json({success: false, data: err})
+    }
+
+    var query = client.query("SELECT * FROM editors WHERE email LIKE ($1);", [email], function(err, results) {
+      done()
       if (err) {
-        done()
-        console.log(err)
-        return res.status(500).json({success: false, data: err})
+        return console.error('error running query', err)
       }
 
-      var query = client.query("SELECT * FROM editors WHERE email LIKE ($1);", [email], function(err, results) {
-        done()
-        if (err) {
-          return console.error('error running query', err)
-        }
-
-        if (results.rows.length === 0) {
-          res.status(204).json({success: false, data: 'no account matches that password'})
-        } else if (bcrypt.compareSync(password, results.rows[0].password_digest)) {
-          res.rows = results.rows[0]
-          next()
-        }
-      })
+      if (results.rows.length === 0) {
+        res.status(204).json({success: false, data: 'no account matches that password'})
+      } else if (bcrypt.compareSync(password, results.rows[0].password_digest)) {
+        res.rows = results.rows[0]
+        next()
+      }
     })
+  })
 }
 
 function createSecure(email, password, callback) {

@@ -49,8 +49,6 @@ app.route('/')
   });
 });
 
-
-
 app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 app.use('/search', searchRoutes)

@@ -4,9 +4,17 @@
   <%- include ../partials/header %>
 </head>
 <body>
-  <%- include ../partials/nav %>
+  <header class="hpheader">
+    <div class="header-text">
+      <%- include ../partials/nav %>
 
+      <div class="">
+        <h1>Some text goes here</h1>
+      </div>
 
+    </div>
+  </header>
+  <div class="container">
   <div>
     <% if (user) {%>
       <h3>Welcome <%= user.email %></h3>

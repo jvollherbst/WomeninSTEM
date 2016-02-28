@@ -11,7 +11,8 @@ function editorAuth(req, res, next) {
   if (req.session.user) {
     next()
   } else {
-    res.status(401).json({succes: false, data: 'not logged in'})
+    // res.status(401).json({succes: false, data: 'not logged in'})
+    res.render('posts/redirect.ejs');
   }
 }
 

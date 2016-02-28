@@ -9,6 +9,11 @@
 <h1>Edit a Post</h1>
 <% posts.forEach(function(el) { %>
 <form action="/posts/<%= el.posts_id %>?_method=PUT" method="post">
+
+  <div>
+    <label for="img">img</label>
+    <input type="text" name="img" value="<%= el.img %>">
+  </div>  
   <div>
     <label for="name">name</label>
     <input type="text" name="name" value="<%= el.name %>">
@@ -31,13 +36,9 @@
 
   <div>
     <label for="bio">bio</label>
-    <input type="text" name="bio">
+    <input type="text" name="bio" value="<%= el.bio %>">
   </div>
 
-  <div>
-    <label for="img">img</label>
-    <input type="text" name="img" value="<%= el.img %>">
-  </div>
   <input type="submit" value="Submit">
 </form>
 <% }) %>

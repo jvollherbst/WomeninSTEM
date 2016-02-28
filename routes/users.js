@@ -19,7 +19,6 @@ users.route('/success')
 // users.route('/')
 users.get('/new', function(req, res) {
   res.render('users/new.ejs')
-  console.log('new user sign up');
 })
 
 users.get('/login', function(req, res) {

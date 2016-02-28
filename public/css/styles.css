@@ -2,15 +2,25 @@ body{
   font-family: 'Merriweather', serif;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6, nav{
   font-family: 'Lato', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: #cccccc;
+}
 
 nav, li{
   list-style-type: none;
   float: left;
   padding-left: 1em;
+}
+
+header{
+  background-image: url(../images/header.jpg);
+  height: 30em;
+  background-size: cover;
 }
 
 .container{
@@ -29,9 +39,23 @@ nav, li{
   width: 15em;
   height: 15em;
   object-fit: cover;
-  padding-right: 2em;
+  padding: 1em;
 }
 
 img.post-img{
   width: 100%;
+}
+
+.content{
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    margin-bottom: -30em;
+    clear: both;
+    background-color: #333333;
+    width: 100%;
 }
