@@ -5,21 +5,16 @@
 </head>
 <body>
   <header class="hpheader">
-    <div class="header-text">
       <%- include ../partials/nav %>
 
-      <div class="">
-        <h1>Some text goes here</h1>
+      <div class="header-text">
+      <div class="text-inner">
+        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque faucibus sem nec pretium dapibus. Cras ullamcorper felis eget lectus elementum, nec scelerisque velit mattis. .</h1>
       </div>
-
     </div>
   </header>
+
   <div class="container">
-  <div>
-    <% if (user) {%>
-      <h3>Welcome <%= user.email %></h3>
-      <% } %>
-  </div>
 
   <div>
     <% include ../partials/posts %>

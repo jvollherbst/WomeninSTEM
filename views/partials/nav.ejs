@@ -1,21 +1,28 @@
 <nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/posts/create">Create Posts</a></li>
-    <li><a href="/posts/all">All Posts</a></li>
-    <li><a href="/users/new">Signup</a></li>
-    <li><a href="/users/login">Login!</a></li>
-    <li>
-      <form method="post" action="users/logout?_method=DELETE">
-        <button>logout</button>
-      </form>
-    </li>
-  </ul>
+  <div class="logo">
+    <a href="/"><img src="/images/OwR-Logo-KO.svg" /></a>
+  </div>
+
+  <div class="menu">
+    <ul>
+      <% if (user) {%>
+          <li>Welcome <%= user.email %></li>
+      <% } %>
+      <li><a href="/posts/create">Create Posts</a></li>
+      <li><a href="/posts/all">All Posts</a></li>
+      <li><a href="/users/new">Signup</a></li>
+      <li><a href="/users/login">Login</a></li>
+      <!-- <li>
+        <form method="post" action="users/logout?_method=DELETE">
+          <button class="logout">logout</button>
+        </form>
+      </li> -->
+    </ul>
+  </div>
 </nav>
 
-<div class="container">
 
-  <div class="search">
+<!--  <div class="search">
     <form action="/search" method="get">
       <div>
         <label for="name">Search</label>
@@ -23,4 +30,4 @@
       </div>
       <input type="submit" value="Submit">
     </form>
-  </div>
+  </div>-->

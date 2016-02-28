@@ -35,12 +35,18 @@ posts.route('/')
 
 posts.route('/all')//should render all posts in my db
   .get(db.showPosts, (req, res) => {
-    res.render('posts/allposts.ejs', {posts: res.rows});
+    res.render('posts/allposts.ejs', {
+      user: req.session.user,
+      posts: res.rows
+    });
 })
 
 posts.route('/create')//should render the form for creating new posts
   .get(editorAuth, (req, res) => {
-    res.render('posts/new.ejs');
+    res.render('posts/new.ejs', {
+      user: req.session.user,
+      posts: res.rows
+    });
   })
 
 //posts by id
@@ -52,7 +58,10 @@ posts.route('/:posts_id')
 
   .get(db.getPostsId, (req, res) => {
       if (req.session.user){
-        res.render('posts/edit.ejs', {posts: res.rows});
+        res.render('posts/edit.ejs',  {
+          user: req.session.user,
+          posts: res.rows
+        });
       }
       else{
         res.render('posts/post.ejs', {posts: res.rows});

@@ -4,7 +4,10 @@
   <%- include ../partials/header %>
 </head>
 <body>
-  <%- include ../partials/nav %>
+  <header>
+    <%- include ../partials/nav %>
+  </header>
+  <div class="container">
 
 <h1>Edit a Post</h1>
 <% posts.forEach(function(el) { %>
@@ -13,7 +16,7 @@
   <div>
     <label for="img">img</label>
     <input type="text" name="img" value="<%= el.img %>">
-  </div>  
+  </div>
   <div>
     <label for="name">name</label>
     <input type="text" name="name" value="<%= el.name %>">
