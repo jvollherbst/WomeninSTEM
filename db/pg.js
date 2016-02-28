@@ -83,7 +83,6 @@ function showPosts(req, res, next){
       next()
     });
   });
-  console.log('test');
 }
 
 function getPostsId(req, res, next){
@@ -102,9 +101,7 @@ function getPostsId(req, res, next){
       next()
     });
   });
-  console.log('test');
 }
-
 
 function addPosts(req, res, next) {
   // Get a Postgres client from the connection pool
@@ -128,7 +125,6 @@ function addPosts(req, res, next) {
   });
 }
 
-
 function editPosts(req, res, next) {
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, function(err, client, done) {
@@ -136,7 +132,7 @@ function editPosts(req, res, next) {
     if(err) {
       done();
       console.log(err);
-      return res.status(500).json({ success: false, data: err});
+      return res.status(500).json({success: false, data: err});
     }
     //console.log(req.body);
     var query = client.query('UPDATE posts SET name = $1, occupation = $2, years = $3, country = $4, bio = $5, img = $6 WHERE posts_id = $7',
@@ -172,11 +168,29 @@ function deletePosts(req, res, next) {
   });
 }
 
+function getUserAuth(req, res, next){
+  pg.connect(connectionString, function(err, client, done) {
+    if(err) {
+      done()
+      console.log(err)
+      return res.status(500).json({success: false, data: err})
+    }
+    var query = client.query('SELECT * FROM editors WHERE auth = true', function(err, result) {
+      done()
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.rows = result.rows;
+      next()
+    });
+  });
+}
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
 
 module.exports.getPostsId = getPostsId;
+module.exports.getUserAuth = getUserAuth;
 
 module.exports.showPosts = showPosts;
 module.exports.addPosts = addPosts;

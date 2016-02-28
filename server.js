@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, './public/')));
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
+
 app.use(session({
   store: new pgSession({
     pg : pg,

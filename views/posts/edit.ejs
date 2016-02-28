@@ -4,21 +4,19 @@
     <%- include ../partials/header %>
   </head>
   <body>
+    <% posts.forEach(function(el) { %>
     <header>
       <%- include ../partials/nav %>
+      <img src="<%= el.img %>" class="post-img" />
     </header>
+    
     <div class="container">
 
-    <h1>Edit Posts go Here</h1>
-    <% posts.forEach(function(el) { %>
-        <div>
-            <p><img src="<%= el.img %>" class="post-img" /></p>
-            <p><%= el.name %></p>
+            <h1><%= el.name %></h1>
             <p><%= el.occupation %></p>
             <p><%= el.years %></p>
             <p><%= el.country %></p>
             <p><%= el.bio %></p>
-        </div>
 
         <div>
         <a href="/posts/<%= el.posts_id %>/edit">
@@ -33,6 +31,7 @@
         </div>
       <% }) %>
 
+    </div>
     <%- include ../partials/footer %>
   </body>
 </html>

@@ -18,11 +18,11 @@ users.route('/success')
 
 // users.route('/')
 users.get('/new', function(req, res) {
-  res.render('users/new.ejs')
+  res.render('users/new.ejs', {user: req.session.user});
 })
 
 users.get('/login', function(req, res) {
-  res.render('users/login.ejs');
+  res.render('users/login.ejs', {user: req.session.user});
 })
 
 users.post('/login', db.loginUser, function(req, res) {

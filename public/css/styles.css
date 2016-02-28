@@ -1,13 +1,13 @@
 body{
   font-family: 'Merriweather', serif;
-  background-color: #f7f7f7;
+  background-color: #f3f3f3;
 }
 
 h1, h2, h3, h4, h5, h6, nav{
   font-family: 'Lato', sans-serif;
 }
 
-a {
+a{
   text-decoration: none;
   color: #cccccc;
 }
@@ -22,21 +22,35 @@ nav, li{
   list-style-type: none;
   float: left;
   padding-left: 1em;
+  padding-top: .25em;
   text-transform: uppercase;
   font-size: .975em;
-  letter-spacing: .05em;
+  letter-spacing: .075em;
   font-weight: 700;
+  color: #cccccc;
 }
 
-.menu{
+.menu {
   float: right;
   margin-right: 3em;
 }
 
-.logo{
+.logo {
   float: left;
   margin-left: 3em;
   padding: .75em 0em;
+}
+
+button.logout {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 0;
+  line-height: 0;
+  font-size: .975em;
+  letter-spacing: .05em;
+  font-weight: 700;
+  color: #cccccc;
 }
 
 header{
@@ -44,7 +58,7 @@ header{
 
 .hpheader{
   background-image: url(../images/header.jpg);
-  height: 40em;
+  height: 30em;
   background-size: cover;
   background-position: center;
 }
@@ -54,8 +68,12 @@ header{
   width: 100%;
   text-align: center;
   color: white;
-  margin-top: 12em;
+  margin-top: 10em;
   clear:both;
+}
+
+.header-text input{
+  color: black;
 }
 
 .text-inner{
@@ -82,12 +100,17 @@ header{
   clear: both;
 }
 
+.thumbnail{
+  margin-top: 3em;
+}
+
 .thumbnail img{
   float: left;
   width: 15em;
   height: 15em;
   object-fit: cover;
   padding: 1em;
+  border-radius: 12.5em;
 }
 
 img.post-img{
@@ -100,7 +123,7 @@ img.post-img{
 
 footer{
   position: relative;
-  bottom: -10em;
+  bottom: -20em;
   left: 0;
   margin-bottom: -20em;
   padding: 1em;
@@ -111,12 +134,6 @@ footer{
 
 footer > p{
   color: #999999;
-}
-
-.logout{
-  padding: 0;
-  margin:0;
-  border: none;
 }
 
 @media only screen and (max-width : 480px) {

@@ -4,25 +4,30 @@
   <%- include ../partials/header %>
 </head>
 <body>
-  <header>
-    <%- include ../partials/nav %>
+  <header class="hpheader">
+      <%- include ../partials/nav %>
+
+    <div class="header-text">
+      <div class="text-inner">
+        <h1>Sign Up page!</h1>
+        <form action="/users" method="post">
+          <div>
+            <label for="email">email</label>
+            <input type="text" name="email">
+          </div>
+
+          <div>
+            <label for="password">password</label>
+            <input type="password" name="password">
+          </div>
+
+          <input type="submit" value="SuBMit">
+        </form>
+      </div>
+    </div>
+
   </header>
   <div class="container">
-
-<h1>Sign Up page!</h1>
-<form action="/users" method="post">
-  <div>
-    <label for="email">email</label>
-    <input type="text" name="email">
-  </div>
-
-  <div>
-    <label for="password">password</label>
-    <input type="text" name="password">
-  </div>
-
-  <input type="submit" value="SuBMit">
-</form>
 
 <%- include ../partials/footer %>
 </body>

@@ -12,14 +12,14 @@ function editorAuth(req, res, next) {
     next()
   } else {
     // res.status(401).json({succes: false, data: 'not logged in'})
-    res.render('posts/redirect.ejs');
+    res.render('users/new.ejs');
   }
 }
 
 posts.route('/')
-  // .get((req, res) => {
-  //   res.render('posts/new.ejs',  {posts: res.rows});
-  // })
+  .get((req, res) => {
+    res.render('/', {user: req.session.user});
+  })
   // .post((req, res) => {
   //   testPost.push(req.body);
   //   var postID = testPost.length-1;
@@ -43,22 +43,15 @@ posts.route('/all')//should render all posts in my db
 
 posts.route('/create')//should render the form for creating new posts
   .get(editorAuth, (req, res) => {
-    res.render('posts/new.ejs', {
-      user: req.session.user,
-      posts: res.rows
-    });
+    res.render('posts/new.ejs', {user: req.session.user});
   })
 
 //posts by id
 posts.route('/:posts_id')
 
-  // .get(db.getPostsId, (req, res) => {
-  //   res.render('posts/post', {posts: res.rows});
-  // })
-
   .get(db.getPostsId, (req, res) => {
       if (req.session.user){
-        res.render('posts/edit.ejs',  {
+        res.render('posts/edit.ejs', {
           user: req.session.user,
           posts: res.rows
         });
@@ -72,26 +65,38 @@ posts.route('/:posts_id')
     res.status(303).redirect('/posts/' + req.params.posts_id);
   })
 
-  .delete(db.deletePosts, (req, res) => {
-    res.redirect("./all");
+  // .delete(editorUserAuth, db.deletePosts, db.getUserAuth, (req, res) => {
+  //
+  //   if(!(req.body.auth)){
+  //   res.redirect("/posts/redirect");
+  //   }
+  //   else{
+  //   res.redirect("./all");
+  //   }
+  // })
+
+  .delete(db.deletePosts, db.getUserAuth, (req, res) => {
+      res.redirect('./all');
   })
+
+// posts.route('/:posts_id/edit')
+//   .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
+//     console.log(req.body.auth);
+//     if(req.body.auth){
+//       res.render('posts/editpost.ejs', {posts: res.rows});
+//     }
+//     else{
+//       res.render('posts/redirect.ejs');
+//     }
+//   })
 
 posts.route('/:posts_id/edit')
-  .get(editorAuth, db.getPostsId, (req, res) => {
-    res.render('posts/editpost.ejs', {posts: res.rows});
+  .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
+    res.render('posts/editpost.ejs', {
+      user: req.session.user,
+      posts: res.rows
+    });
   })
-
-  // posts.route('/:posts_id/edit')
-  //   .get(editorAuth, db.getPostsId, (req, res) => {
-  //     res.render('posts/new.ejs', {
-  //       posts: res.rows,
-  //       editForm:{
-  //         title: 'Edit a Post',
-  //         postURL: '/posts/' + req.params.posts_id + '?_method=PUT',
-  //       }
-  //     });
-  //   })
-
 
 
 module.exports = posts;

@@ -6,17 +6,17 @@
   <div class="menu">
     <ul>
       <% if (user) {%>
-          <li>Welcome <%= user.email %></li>
+      <li>Welcome <%= user.email %></li>
       <% } %>
       <li><a href="/posts/create">Create Posts</a></li>
       <li><a href="/posts/all">All Posts</a></li>
       <li><a href="/users/new">Signup</a></li>
       <li><a href="/users/login">Login</a></li>
-      <!-- <li>
-        <form method="post" action="users/logout?_method=DELETE">
+      <li>
+        <form method="post" action="/users/logout?_method=DELETE">
           <button class="logout">logout</button>
         </form>
-      </li> -->
+      </li>
     </ul>
   </div>
 </nav>
