@@ -21,9 +21,6 @@ var userRoutes = require(path.join(__dirname, '/routes/users'));
 var postRoutes = require(path.join(__dirname, '/routes/posts'));
 var searchRoutes = require(path.join(__dirname, '/routes/search'));
 
-// override with POST having ?_method=XXXX
-/* e.g. If we need to make a PUT,
-we'll POST to a url appended with ?_method=put */
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, './public/')));
 
@@ -37,7 +34,7 @@ app.use(session({
     conString : connectionString,
     tableName : 'session'
   }),
-  secret: 'secret', // something we maybe want to save with dotenv *hint hint*
+  secret: 'secret',
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }))
@@ -54,5 +51,5 @@ app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 app.use('/search', searchRoutes)
 
-var port = process.env.PORT || 3000; //allows user to select their own port, does not fix a port
+var port = process.env.PORT || 3000;
 var server = app.listen(port);

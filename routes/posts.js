@@ -4,6 +4,7 @@ var posts      = express.Router();
 var bodyParser = require('body-parser');
 var session    = require('express-session');
 var db         = require('./../db/pg');
+var papercut   = require('papercut');
 
 
 function editorAuth(req, res, next) {
@@ -18,11 +19,11 @@ posts.route('/')
   .get((req, res) => {
     res.render('/', {user: req.session.user});
   })
-  .post(db.addPosts, (req, res) => {//should run the function to post data to my database
-     res.redirect('posts/all') //displays ALL posts in db
+  .post(db.addPosts, (req, res) => {
+     res.redirect('posts/all')
 })
 
-posts.route('/all')//should render all posts in my db
+posts.route('/all')
   .get(db.showPosts, (req, res) => {
     res.render('posts/allposts.ejs', {
       user: req.session.user,
@@ -30,50 +31,24 @@ posts.route('/all')//should render all posts in my db
     });
 })
 
-// posts.route('/create')//should render the form for creating new posts
-//   .get(editorAuth, (req, res) => {
-//     res.render('posts/new.ejs', {user: req.session.user});
-//   })
+posts.route('/create')
+  .get((req, res) => {
 
-  posts.route('/create')//should render the form for creating new posts
-    .get((req, res) => {
-      console.log(req.session.user);
+    if(req.session.user){
 
-      if(req.session.user){//adding user to session obj — contains all my user's info which I added in the user route
-
-        if(req.session.user.auth){//looking for the auth value in my current user
-          console.log('true');
-          console.log(posts);
-          res.render('posts/new.ejs', {user: req.session.user});
-        }
-        else{
-          console.log('false');
-          console.log(posts);
-          res.render('posts/redirect.ejs', {user: req.session.user});
-        }
+      if(req.session.user.auth){
+        res.render('posts/new.ejs', {user: req.session.user});
       }
-
-      else {
-        res.render('users/new.ejs', {user: req.session.user});
+      else{
+        res.render('posts/redirect.ejs', {user: req.session.user});
       }
+    }
 
-      // var posts = res.rows;
+    else {
+      res.render('users/new.ejs', {user: req.session.user});
+    }
+  })
 
-      // posts.forEach(function(el){
-      //   if(el.auth){
-      //     console.log('if true');
-      //     console.log(res.rows);
-      //     res.render('posts/new.ejs', {user: req.session.user});
-      //   }
-      //   else{
-      //     console.log('if false');
-      //     console.log(res.rows);
-      //     res.render('posts/redirect.ejs', {user: req.session.user});
-      //   }
-      // })
-    })
-
-//posts by id
 posts.route('/:posts_id')
 
   .get(db.getPostsId, (req, res) => {
@@ -103,9 +78,9 @@ posts.route('/:posts_id')
 posts.route('/:posts_id/edit')
   .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
 
-    if(req.session.user){//adding user to session obj — contains all my user's info which I added in the user route
+    if(req.session.user){
 
-      if(req.session.user.auth){//looking for the auth value in my current user
+      if(req.session.user.auth){
         console.log('true');
         res.render('posts/editpost.ejs', {
           user: req.session.user,

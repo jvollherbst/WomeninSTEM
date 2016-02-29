@@ -55,9 +55,6 @@ button.logout {
   color: #ffffff;
 }
 
-header{
-}
-
 .hpheader{
   background-image: url(../images/header.jpg);
   height: 30em;
@@ -168,6 +165,11 @@ footer > p{
     margin: 0;
     text-align: center;
   }
+
+  header{
+    font-size: 75%;
+  }
+
   .container{
     width: 100%;
   }

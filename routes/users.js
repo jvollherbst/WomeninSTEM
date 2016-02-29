@@ -15,19 +15,19 @@ users.route('/subscribers')
 })
 
 users.route('/success')
-    .get((req, res) => {
-      res.render('users/success.ejs',  {user: req.session.user})
-    })
+  .get((req, res) => {
+    res.render('users/success.ejs',  {user: req.session.user})
+  })
 
- users.get('/new', function(req, res) {
-   res.render('users/new.ejs', {user: req.session.user});
- })    
+users.get('/new', (req, res) => {
+  res.render('users/new.ejs', {user: req.session.user});
+})
 
-users.get('/login', function(req, res) {
+users.get('/login', (req, res) => {
   res.render('users/login.ejs', {user: req.session.user});
 })
 
-users.post('/login', db.loginUser, function(req, res) {
+users.post('/login', db.loginUser, (req, res) => {
   req.session.user = res.rows;
 
   // when you redirect you must force a save due to asynchronisity
@@ -40,8 +40,8 @@ users.post('/login', db.loginUser, function(req, res) {
   });
 })
 
-users.delete('/logout', function(req, res) {
-  req.session.destroy(function(err){
+users.delete('/logout', (req, res) => {
+  req.session.destroy((err) => {
     res.redirect('/');
   })
 })
