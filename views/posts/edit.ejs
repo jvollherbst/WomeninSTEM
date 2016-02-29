@@ -9,7 +9,6 @@
       <%- include ../partials/nav %>
       <img src="<%= el.img %>" class="post-img" />
     </header>
-    
     <div class="container">
 
             <h1><%= el.name %></h1>
@@ -23,15 +22,9 @@
           <button>Edit Post</button>
         </a>
         </div>
-
-        <div>
-        <form method="post" action="/posts/<%= el.posts_id %>?_method=DELETE">
-          <button>Delete Post</button>
-        </form>
-        </div>
       <% }) %>
-
     </div>
+
     <%- include ../partials/footer %>
   </body>
 </html>

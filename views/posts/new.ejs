@@ -8,41 +8,41 @@
     <%- include ../partials/nav %>
   </header>
   <div class="container">
+    <div class="content">
+      <h1>Create a Post</h1>
+      <form action="/posts" method="post">
+        <div>
+          <label for="name">name</label>
+          <input type="text" size="50" name="name">
+        </div>
 
-<h1>Create a Post</h1>
-<form action="/posts" method="post">
-  <div>
-    <label for="name">name</label>
-    <input type="text" name="name">
-  </div>
+        <div>
+          <label for="occupation">occupation</label>
+          <input type="text" size="50" name="occupation">
+        </div>
 
-  <div>
-    <label for="occupation">occupation</label>
-    <input type="text" name="occupation">
-  </div>
+        <div>
+          <label for="years">years</label>
+          <input type="text" size="50" name="years">
+        </div>
 
-  <div>
-    <label for="years">years</label>
-    <input type="text" name="years">
-  </div>
+        <div>
+          <label for="country">country</label>
+          <input type="text" size="50" name="country">
+        </div>
 
-  <div>
-    <label for="country">country</label>
-    <input type="text" name="country">
-  </div>
+        <div>
+          <label for="bio">bio</label>
+          <input type="text" size="50" name="bio">
+        </div>
 
-  <div>
-    <label for="bio">bio</label>
-    <input type="text" name="bio">
-  </div>
-
-  <div>
-    <label for="img">img</label>
-    <input type="text" name="img">
-  </div>
-  <input type="submit" value="Submit">
-</form>
-
+        <div>
+          <label for="img">img</label>
+          <input type="text" size="50" name="img">
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
 <%- include ../partials/footer %>
 </body>
 </html>

@@ -1,6 +1,7 @@
 body{
   font-family: 'Merriweather', serif;
   background-color: #f0f0f0;
+  color: #333333;
 }
 
 h1, h2, h3, h4, h5, h6, nav{
@@ -9,13 +10,14 @@ h1, h2, h3, h4, h5, h6, nav{
 
 a{
   text-decoration: none;
-  color: #cccccc;
+  color: #ffffff;
 }
 
 nav{
   margin: 0 auto;
   width: 100%;
-  border-bottom: 1px solid #777777;
+  border-bottom: 1px solid #5D8DA1;
+  background-color: #6AA2B8;
 }
 
 nav, li{
@@ -27,7 +29,7 @@ nav, li{
   font-size: .975em;
   letter-spacing: .075em;
   font-weight: 700;
-  color: #cccccc;
+  color: #ffffff;
 }
 
 .menu {
@@ -50,7 +52,7 @@ button.logout {
   font-size: .975em;
   letter-spacing: .05em;
   font-weight: 700;
-  color: #cccccc;
+  color: #ffffff;
 }
 
 header{
@@ -61,19 +63,29 @@ header{
   height: 30em;
   background-size: cover;
   background-position: center;
+  color: white;
+}
+
+.header-alt{
+  height: 30em;
+  background-position: center;
+  color: #333333;
+}
+
+.header-alt input{
+  color: #333333;
 }
 
 .header-text{
   position: absolute;
   width: 100%;
   text-align: center;
-  color: white;
   margin-top: 10em;
   clear:both;
 }
 
 .header-text input{
-  color: black;
+  color: #333333;
 }
 
 .text-inner{
@@ -85,7 +97,7 @@ header{
   font-family: 'Merriweather', serif;
   font-weight: 100;
   font-size: 1.75em;
-  letter-spacing: .025em;
+  letter-spacing: .0375em;
 }
 
 .container{
@@ -110,6 +122,7 @@ header{
   height: 15em;
   object-fit: cover;
   padding: 1em;
+  margin: 1em 2em;
   border-radius: 12.5em;
 }
 
@@ -118,17 +131,16 @@ img.post-img{
 }
 
 .content{
-  color: #337ab7;
+  padding-top: 2em;
 }
 
 footer{
   position: relative;
   width: 100%;
   height: 10em;
-  bottom: -20em;
+  bottom: -10em;
   left: 0;
   margin-bottom: -20em;
-  /*padding: 1em;*/
   background-color: #333333;
   clear: both;
 }
@@ -150,7 +162,12 @@ footer > p{
   color: #cccccc;
 }
 
-@media only screen and (max-width : 480px) {
+@media only screen and (max-width : 30em) {
+  .logo{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
   .container{
     width: 100%;
   }
@@ -165,5 +182,14 @@ footer > p{
 
   footer{
     text-align: center;
+  }
+
+  .footer-newsletter{
+    width: 100%;
+  }
+
+  .footer-col{
+    display: block;
+    padding: 0;
   }
 }

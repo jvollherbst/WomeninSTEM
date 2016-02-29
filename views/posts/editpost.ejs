@@ -44,7 +44,12 @@
 
   <input type="submit" value="Submit">
 </form>
+
+<form method="post" action="/posts/<%= el.posts_id %>?_method=DELETE">
+  <button>Delete Post</button>
+</form>
 <% }) %>
+
 <%- include ../partials/footer %>
 </body>
 </html>

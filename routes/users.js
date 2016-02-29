@@ -19,6 +19,10 @@ users.route('/success')
       res.render('users/success.ejs',  {user: req.session.user})
     })
 
+ users.get('/new', function(req, res) {
+   res.render('users/new.ejs', {user: req.session.user});
+ })    
+
 users.get('/login', function(req, res) {
   res.render('users/login.ejs', {user: req.session.user});
 })

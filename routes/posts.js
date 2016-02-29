@@ -36,7 +36,7 @@ posts.route('/all')//should render all posts in my db
 //   })
 
   posts.route('/create')//should render the form for creating new posts
-    .get( (req, res) => {
+    .get((req, res) => {
       console.log(req.session.user);
 
       if(req.session.user){//adding user to session obj — contains all my user's info which I added in the user route
@@ -95,28 +95,35 @@ posts.route('/:posts_id')
     res.status(303).redirect('/posts/' + req.params.posts_id);
   })
 
-  // .delete(editorUserAuth, db.deletePosts, db.getUserAuth, (req, res) => {
-  //
-  //   if(!(req.body.auth)){
-  //   res.redirect("/posts/redirect");
-  //   }
-  //   else{
-  //   res.redirect("./all");
-  //   }
-  // })
-
-  .delete(db.deletePosts, db.getUserAuth, (req, res) => {
+  .delete(db.deletePosts, (req, res) => {
       res.redirect('./all');
   })
 
 
 posts.route('/:posts_id/edit')
   .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
-    res.render('posts/editpost.ejs', {
-      user: req.session.user,
-      posts: res.rows
-    });
+
+    if(req.session.user){//adding user to session obj — contains all my user's info which I added in the user route
+
+      if(req.session.user.auth){//looking for the auth value in my current user
+        console.log('true');
+        res.render('posts/editpost.ejs', {
+          user: req.session.user,
+          posts: res.rows
+        });
+      }
+      else{
+        console.log('false');
+        res.render('posts/redirect.ejs', {user: req.session.user});
+      }
+    }
+
+    else {
+      res.render('users/new.ejs', {user: req.session.user});
+    }
   })
+
+
 
 
 module.exports = posts;
