@@ -7,11 +7,9 @@ var db         = require('./../db/pg');
 
 
 function editorAuth(req, res, next) {
-  console.log(req.session)
   if (req.session.user) {
     next()
   } else {
-    // res.status(401).json({succes: false, data: 'not logged in'})
     res.render('users/new.ejs');
   }
 }
@@ -20,17 +18,8 @@ posts.route('/')
   .get((req, res) => {
     res.render('/', {user: req.session.user});
   })
-  // .post((req, res) => {
-  //   testPost.push(req.body);
-  //   var postID = testPost.length-1;
-  //
-  //   res.redirect(303,'/')
-  //   // res.redirect(303,'./'+ postID)
-  // })
   .post(db.addPosts, (req, res) => {//should run the function to post data to my database
      res.redirect('posts/all') //displays ALL posts in db
-      // var postID = res.rows[0].test_id;
-    // res.redirect('posts/' + req.body.test_id)
 })
 
 posts.route('/all')//should render all posts in my db
@@ -41,23 +30,46 @@ posts.route('/all')//should render all posts in my db
     });
 })
 
+// posts.route('/create')//should render the form for creating new posts
+//   .get(editorAuth, (req, res) => {
+//     res.render('posts/new.ejs', {user: req.session.user});
+//   })
+
 posts.route('/create')//should render the form for creating new posts
-  .get(editorAuth, (req, res) => {
-    res.render('posts/new.ejs', {user: req.session.user});
+  .get(db.showPosts, db.getUserAuth, (req, res) => {
+    if(!(req.session.user)){
+      res.render('users/new.ejs', {user: req.session.user});
+    }
+    else{
+      var posts = res.rows;
+      posts.forEach(function(el){
+        if(el.auth){
+          console.log('if true');
+          res.render('posts/new.ejs', {user: req.session.user});
+        }
+        else{
+          console.log('else false');
+          res.render('posts/redirect.ejs', {user: req.session.user});
+        }
+      })
+    }
   })
 
 //posts by id
 posts.route('/:posts_id')
 
   .get(db.getPostsId, (req, res) => {
-      if (req.session.user){
-        res.render('posts/edit.ejs', {
+      if(!(req.session.user)){
+        res.render('posts/post.ejs', {
           user: req.session.user,
           posts: res.rows
         });
       }
       else{
-        res.render('posts/post.ejs', {posts: res.rows});
+        res.render('posts/edit.ejs', {
+          user: req.session.user,
+          posts: res.rows
+        });
       }
   })
 

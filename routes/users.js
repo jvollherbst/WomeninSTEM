@@ -11,14 +11,19 @@ users.route('/')
 
 users.route('/success')
     .get((req, res) => {
-      res.render('users/success.ejs')
+      res.render('users/success.ejs',  {user: req.session.user})
     })
 
 // users.get('/success', (req, res) => {res.render('/users/success.ejs')})
 
 // users.route('/')
 users.get('/new', function(req, res) {
-  res.render('users/new.ejs', {user: req.session.user});
+  if(!(req.session.user)){
+    res.render('users/new.ejs', {user: req.session.user});
+  }
+  else{
+    res.render('users/new.ejs', {user: req.session.user});
+  }
 })
 
 users.get('/login', function(req, res) {
@@ -26,7 +31,7 @@ users.get('/login', function(req, res) {
 })
 
 users.post('/login', db.loginUser, function(req, res) {
-  req.session.user = res.rows
+  req.session.user = res.rows;
 
   // when you redirect you must force a save due to asynchronisity
   // https://github.com/expressjs/session/issues/167 **
@@ -34,7 +39,7 @@ users.post('/login', db.loginUser, function(req, res) {
   // the destination page well before we finished sending the response to the client."
 
   req.session.save(function() {
-    res.redirect('/')
+    res.redirect('/');
   });
 })
 
