@@ -36,12 +36,12 @@ posts.route('/all')//should render all posts in my db
 //   })
 
   posts.route('/create')//should render the form for creating new posts
-    .get(db.showPosts, db.getUserAuth, (req, res) => {
+    .get( (req, res) => {
+      console.log(req.session.user);
 
-      if(req.session.user){
-        var posts = res.rows;
+      if(req.session.user){//adding user to session obj — contains all my user's info which I added in the user route
 
-        if(posts.auth){
+        if(req.session.user.auth){//looking for the auth value in my current user
           console.log('true');
           console.log(posts);
           res.render('posts/new.ejs', {user: req.session.user});

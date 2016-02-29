@@ -9,22 +9,15 @@ users.route('/')
     res.redirect('users/success');
   })
 
+users.route('/subscribers')
+  .post(db.createSub, (req, res) => {
+    res.redirect('/users/success');
+})
+
 users.route('/success')
     .get((req, res) => {
       res.render('users/success.ejs',  {user: req.session.user})
     })
-
-// users.get('/success', (req, res) => {res.render('/users/success.ejs')})
-
-// users.route('/')
-users.get('/new', function(req, res) {
-  if(!(req.session.user)){
-    res.render('users/new.ejs', {user: req.session.user});
-  }
-  else{
-    res.render('users/new.ejs', {user: req.session.user});
-  }
-})
 
 users.get('/login', function(req, res) {
   res.render('users/login.ejs', {user: req.session.user});

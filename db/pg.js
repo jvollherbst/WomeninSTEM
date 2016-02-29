@@ -67,6 +67,25 @@ function createUser(req, res, next) {
   }
 }
 
+function createSub(req, res, next) {
+
+    pg.connect(connectionString, function(err, client, done) {
+      if (err) {
+        done()
+        console.log(err)
+        return res.status(500).json({success: false, data: err})
+      }
+
+      var query = client.query("INSERT INTO subscribers (email) VALUES ($1);", [req.body.email], function(err, result) {
+        done()
+        if (err) {
+          return console.error('error running query', err)
+        }
+        next()
+      })
+    })
+}
+
 function showPosts(req, res, next){
   pg.connect(connectionString, function(err, client, done) {
     if(err) {
@@ -188,6 +207,8 @@ function getUserAuth(req, res, next){
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+
+module.exports.createSub = createSub;
 
 module.exports.getPostsId = getPostsId;
 module.exports.getUserAuth = getUserAuth;

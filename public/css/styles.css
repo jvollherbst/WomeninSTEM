@@ -1,6 +1,6 @@
 body{
   font-family: 'Merriweather', serif;
-  background-color: #f3f3f3;
+  background-color: #f0f0f0;
 }
 
 h1, h2, h3, h4, h5, h6, nav{
@@ -123,17 +123,31 @@ img.post-img{
 
 footer{
   position: relative;
+  width: 100%;
+  height: 10em;
   bottom: -20em;
   left: 0;
   margin-bottom: -20em;
-  padding: 1em;
-  clear: both;
+  /*padding: 1em;*/
   background-color: #333333;
-  width: 100%;
+  clear: both;
 }
 
 footer > p{
   color: #999999;
+}
+
+.footer-newsletter{
+  width: 60em;
+  margin: 0 auto;
+  padding-top: 3em;
+  text-align: center;
+}
+
+.footer-col{
+  display: inline-block;
+  padding-left: 1em;
+  color: #cccccc;
 }
 
 @media only screen and (max-width : 480px) {
