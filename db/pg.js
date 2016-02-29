@@ -1,8 +1,13 @@
 var pg               = require('pg');
-var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
 var bcrypt           = require('bcrypt');
 var salt             = bcrypt.genSaltSync(10);
 var session          = require('express-session');
+
+if (process.env.NODE_ENV === 'production') {
+      var connectionString = process.env.DATABASE_URL;
+    } else {
+      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
+    }
 
 
 function loginUser(req, res, next) {

@@ -5,12 +5,17 @@ var methodOverride    = require('method-override');
 var bodyParser        = require('body-parser');
 var db                = require('./db/pg');
 var pg                = require('pg');
-var connectionString  = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
 var session           = require('express-session');
 var pgSession         = require('connect-pg-simple')(session);
 var dotenv            = require ('dotenv');
 var path              = require('path');
 var app               = express();
+
+if (process.env.NODE_ENV === 'production') {
+      var connectionString = process.env.DATABASE_URL;
+    } else {
+      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
+    }
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
