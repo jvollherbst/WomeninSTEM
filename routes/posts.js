@@ -43,16 +43,18 @@ posts.route('/create')//should render the form for creating new posts
     else{
       var posts = res.rows;
       posts.forEach(function(el){
-        if(el.auth){
-          console.log('if true');
-          res.render('posts/new.ejs', {user: req.session.user});
+        if(!(el.auth)){
+          next()
         }
         else{
-          console.log('else false');
-          res.render('posts/redirect.ejs', {user: req.session.user});
+          console.log('else true');
+          console.log(res.rows);
+          res.render('posts/new.ejs', {user: req.session.user});
         }
       })
     }
+    console.log('if false');
+    res.render('posts/redirect.ejs', {user: req.session.user});
   })
 
 //posts by id
