@@ -35,27 +35,43 @@ posts.route('/all')//should render all posts in my db
 //     res.render('posts/new.ejs', {user: req.session.user});
 //   })
 
-posts.route('/create')//should render the form for creating new posts
-  .get(db.showPosts, db.getUserAuth, (req, res) => {
-    if(!(req.session.user)){
-      res.render('users/new.ejs', {user: req.session.user});
-    }
-    else{
-      var posts = res.rows;
-      posts.forEach(function(el){
-        if(!(el.auth)){
-          next()
-        }
-        else{
-          console.log('else true');
-          console.log(res.rows);
+  posts.route('/create')//should render the form for creating new posts
+    .get(db.showPosts, db.getUserAuth, (req, res) => {
+
+      if(req.session.user){
+        var posts = res.rows;
+
+        if(posts.auth){
+          console.log('true');
+          console.log(posts);
           res.render('posts/new.ejs', {user: req.session.user});
         }
-      })
-    }
-    console.log('if false');
-    res.render('posts/redirect.ejs', {user: req.session.user});
-  })
+        else{
+          console.log('false');
+          console.log(posts);
+          res.render('posts/redirect.ejs', {user: req.session.user});
+        }
+      }
+
+      else {
+        res.render('users/new.ejs', {user: req.session.user});
+      }
+
+      // var posts = res.rows;
+
+      // posts.forEach(function(el){
+      //   if(el.auth){
+      //     console.log('if true');
+      //     console.log(res.rows);
+      //     res.render('posts/new.ejs', {user: req.session.user});
+      //   }
+      //   else{
+      //     console.log('if false');
+      //     console.log(res.rows);
+      //     res.render('posts/redirect.ejs', {user: req.session.user});
+      //   }
+      // })
+    })
 
 //posts by id
 posts.route('/:posts_id')
@@ -93,16 +109,6 @@ posts.route('/:posts_id')
       res.redirect('./all');
   })
 
-// posts.route('/:posts_id/edit')
-//   .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
-//     console.log(req.body.auth);
-//     if(req.body.auth){
-//       res.render('posts/editpost.ejs', {posts: res.rows});
-//     }
-//     else{
-//       res.render('posts/redirect.ejs');
-//     }
-//   })
 
 posts.route('/:posts_id/edit')
   .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
