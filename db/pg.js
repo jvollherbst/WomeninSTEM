@@ -190,31 +190,12 @@ function deletePosts(req, res, next) {
   });
 }
 
-function getUserAuth(req, res, next){
-  pg.connect(connectionString, function(err, client, done) {
-    if(err) {
-      done()
-      console.log(err)
-      return res.status(500).json({success: false, data: err})
-    }
-    var query = client.query('SELECT * FROM editors WHERE auth = true', function(err, result) {
-      done()
-      if (err) {
-        return console.error('error running query', err);
-      }
-      res.rows = result.rows;
-      next()
-    });
-  });
-}
-
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
 
 module.exports.createSub = createSub;
 
 module.exports.getPostsId = getPostsId;
-module.exports.getUserAuth = getUserAuth;
 
 module.exports.showPosts = showPosts;
 module.exports.addPosts = addPosts;

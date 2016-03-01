@@ -1,10 +1,11 @@
-var pg               = require('pg');
+var pg = require('pg');
 
 if (process.env.NODE_ENV === 'production') {
-      var connectionString = process.env.DATABASE_URL;
-    } else {
-      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
-    }
+    var connectionString = process.env.DATABASE_URL;
+  }
+  else {
+    var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/womeninstem';
+  }
 
 function showSearch(req, res, next){
   pg.connect(connectionString, function(err, client, done) {
@@ -22,7 +23,6 @@ function showSearch(req, res, next){
       next()
     });
   });
-  console.log('test');
 }
 
 

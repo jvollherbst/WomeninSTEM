@@ -76,7 +76,7 @@ posts.route('/:posts_id')
 
 
 posts.route('/:posts_id/edit')
-  .get(editorAuth, db.getUserAuth, db.getPostsId, (req, res) => {
+  .get(editorAuth, db.getPostsId, (req, res) => {
 
     if(req.session.user){
 
