@@ -160,15 +160,31 @@ footer > p {
 }
 
 @media only screen and (max-width : 30em) {
-  .logo{
+
+  nav {
     padding: 0;
     margin: 0;
+  }
+
+  .logo,
+  .menu {
+    float: none;
+    margin: 0;
+    padding: 0;
     text-align: center;
+
   }
 
   header {
     font-size: 75%;
-    height: 100%;
+  }
+
+  .hpheader {
+    height: 50em;
+  }
+
+  .header-text {
+    padding-top: 2em;
   }
 
   .container {
