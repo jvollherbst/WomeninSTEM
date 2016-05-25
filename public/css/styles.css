@@ -1,26 +1,26 @@
-body{
+body {
   font-family: 'Merriweather', serif;
   background-color: #f0f0f0;
   color: #333333;
 }
 
-h1, h2, h3, h4, h5, h6, nav{
+h1, h2, h3, h4, h5, h6, nav {
   font-family: 'Lato', sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
   color: #ffffff;
 }
 
-nav{
+nav {
   margin: 0 auto;
   width: 100%;
   border-bottom: 1px solid #5D8DA1;
   background-color: #6AA2B8;
 }
 
-nav, li{
+nav, li {
   list-style-type: none;
   float: left;
   padding-left: 1em;
@@ -55,7 +55,7 @@ button.logout {
   color: #ffffff;
 }
 
-.hpheader{
+.hpheader {
   background-image: url(../images/header.jpg);
   height: 30em;
   background-size: cover;
@@ -63,17 +63,17 @@ button.logout {
   color: white;
 }
 
-.header-alt{
+.header-alt {
   height: 30em;
   background-position: center;
   color: #333333;
 }
 
-.header-alt input{
+.header-alt input {
   color: #333333;
 }
 
-.header-text{
+.header-text {
   position: absolute;
   width: 100%;
   text-align: center;
@@ -81,23 +81,23 @@ button.logout {
   clear:both;
 }
 
-.header-text input{
+.header-text input {
   color: #333333;
 }
 
-.text-inner{
+.text-inner {
   width: 60em;
   margin: 0 auto;
 }
 
-.text-inner h1{
+.text-inner h1 {
   font-family: 'Merriweather', serif;
   font-weight: 100;
   font-size: 1.75em;
   letter-spacing: .0375em;
 }
 
-.container{
+.container {
   margin: 0 auto;
   width: 60em;
   clear: both;
@@ -105,15 +105,15 @@ button.logout {
   margin-bottom: 20em;
 }
 
-.search{
+.search {
   clear: both;
 }
 
-.thumbnail{
+.thumbnail {
   margin-top: 3em;
 }
 
-.thumbnail img{
+.thumbnail img {
   float: left;
   width: 15em;
   height: 15em;
@@ -123,15 +123,15 @@ button.logout {
   border-radius: 12.5em;
 }
 
-img.post-img{
+img.post-img {
   width: 100%;
 }
 
-.content{
+.content {
   padding-top: 2em;
 }
 
-footer{
+footer {
   position: relative;
   width: 100%;
   height: 10em;
@@ -142,18 +142,18 @@ footer{
   clear: both;
 }
 
-footer > p{
+footer > p {
   color: #999999;
 }
 
-.footer-newsletter{
+.footer-newsletter {
   width: 60em;
   margin: 0 auto;
   padding-top: 3em;
   text-align: center;
 }
 
-.footer-col{
+.footer-col {
   display: inline-block;
   padding-left: 1em;
   color: #cccccc;
@@ -166,11 +166,12 @@ footer > p{
     text-align: center;
   }
 
-  header{
+  header {
     font-size: 75%;
+    height: 100%;
   }
 
-  .container{
+  .container {
     width: 100%;
   }
 
